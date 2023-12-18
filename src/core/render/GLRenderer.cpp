@@ -17,7 +17,7 @@ GLRenderer::~GLRenderer()
     glfwTerminate();
 }
 
-int GLRenderer::Init()
+int GLRenderer::Init(int width = 800, int height = 600, const char* title = "OpenGL")
 {
     if (!glfwInit())
     {
@@ -30,7 +30,8 @@ int GLRenderer::Init()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    m_Window = glfwCreateWindow(800, 600, "ZMMR", NULL, NULL);
+
+    m_Window = glfwCreateWindow(width, height, title, NULL, NULL);
     if (m_Window == NULL)
     {
         cout << "Failed to open GLFW window" << endl;
@@ -50,11 +51,13 @@ int GLRenderer::Init()
     return 0;
 }
 
-void GLRenderer::StartRendering()
+void GLRenderer::Render() const
 {
-    while(!glfwWindowShouldClose(m_Window))
-    {
-        glfwSwapBuffers(m_Window);
-        glfwPollEvents();    
-    }
+    glfwSwapBuffers(m_Window);
+    glfwPollEvents();
+}
+
+bool GLRenderer::IsWindowClosed() const
+{
+    return glfwWindowShouldClose(m_Window);
 }

@@ -1,10 +1,8 @@
-#include "core/render/GLRenderer.h"
+#include "gb/GameBoy.h" 
 
 int main() {
-    auto* renderer = new GLRenderer();
-    if (renderer->Init() > -1) {
-        renderer->StartRendering();
-    }
-    delete renderer;
+    auto* gameboy = new GameBoy();
+    gameboy->Start();
+    delete gameboy;
     return 0;
 }

@@ -9,6 +9,7 @@ public:
     GLRenderer();
     ~GLRenderer();
 
-    int Init();
-    void StartRendering();
+    int Init(int width, int height, const char* title);
+    void Render() const;
+    bool IsWindowClosed() const;
 };
